@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"3rd Eye" - Telecom Network Operator Audit & Monitoring</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* --- General Styles & Variables --- */
+        :root {
+            --color-primary: #0d6efd; /* Blue */
+            --color-secondary: #6c757d; /* Gray */
+            --color-success: #198754; /* Green */
+            --color-warning: #fd7e14; /* Orange */
+            --color-danger: #dc3545; /* Red */
+            --color-info: #0dcaf0; /* Cyan */
+            --color-light-gray: #f8f9fa;
+            --color-white: #ffffff;
+            --color-dark-text: #212529;
+            --color-medium-text: #495057;
+            --color-light-text: #6c757d;
+
+            --font-family-primary: 'Inter', sans-serif;
+
+            --spacing-xl: 80px;
+            --spacing-lg: 60px;
+            --spacing-md: 40px;
+            --spacing-sm: 30px;
+            --spacing-xs: 20px;
+
+            --card-radius: 15px;
+            --header-radius: 12px;
+            --button-radius: 10px;
+
+            --shadow-normal: 0 8px 25px rgba(0, 0, 0, 0.07);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-section: inset 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-light-gray);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        section {
+            width: 100%;
+            padding: var(--spacing-lg) 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Header --- */
+        header {
+            width: 100%;
+            max-width: 1400px;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            padding: 35px 20px;
+            background-color: var(--color-white);
+            border-radius: var(--header-radius);
+            box-shadow: var(--shadow-normal);
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            color: var(--color-dark-text);
+            font-weight: 700;
+            margin: 0;
+            font-size: 3.2rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: var(--spacing-xl);
+            border-radius: var(--card-radius);
+            position: relative;
+            box-shadow: 0 15px 50px rgba(13, 110, 253, 0.3), 0 10px 20px rgba(111, 66, 193, 0.3);
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- 5G Architecture Diagram Section --- */
+        .architecture-diagram-section {
+            background-color: var(--color-white);
+            padding-top: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-radius: var(--card-radius);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-normal);
+            text-align: center;
+        }
+
+        .architecture-diagram-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-dark-text);
+        }
+
+        .architecture-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: var(--spacing-md) auto 0 auto;
+            padding: 0 20px;
+        }
+
+        .arch-block {
+            background-color: var(--color-light-gray);
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px 20px;
+            text-align: center;
+            min-width: 120px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 120px; /* Fixed height for blocks */
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .arch-block:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-normal);
+        }
+
+        .arch-block i {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .arch-block span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-dark-text);
+            white-space: nowrap; /* Prevent wrapping for short names */
+        }
+
+        /* Specific block styling and connections */
+        .arch-block.ue { border-left: 4px solid var(--color-secondary); } /* Gray */
+        .arch-block.antenna { border-left: 4px solid var(--color-info); } /* Cyan */
+        .arch-block.ru { border-left: 4px solid var(--color-warning); } /* Orange */
+        .arch-block.du { border-left: 4px solid var(--color-primary); } /* Blue */
+        .arch-block.cu { border-left: 4px solid var(--color-success); } /* Green */
+
+        .arch-block.ims { border-left: 4px solid #6f42c1; } /* Purple for IMS */
+        .arch-block.data-net { border-left: 4px solid #0d6efd; } /* Blue for Data Network */
+
+        .arch-block.amf { border-left: 4px solid var(--color-primary); } /* Blue */
+        .arch-block.smf { border-left: 4px solid var(--color-info); } /* Cyan */
+        .arch-block.upf { border-left: 4px solid var(--color-success); } /* Green */
+        .arch-block.pcf { border-left: 4px solid var(--color-warning); } /* Orange */
+        .arch-block.udm { border-left: 4px solid var(--color-danger); } /* Red */
+        .arch-block.nrf { border-left: 4px solid var(--color-secondary); } /* Gray */
+        .arch-block.ausf { border-left: 4px solid var(--color-info); } /* Cyan */
+
+        /* Connecting lines (simplified with CSS) */
+        /* You'd typically use SVG or a more advanced CSS approach for complex diagrams, */
+        /* but simple connectors can be achieved by positioning and borders if needed. */
+        /* For now, relying on visual flow and block placement. */
+
+        /* --- "About 3rd Eye" Section --- */
+        .about-3rd-eye {
+            text-align: center;
+        }
+
+        .about-3rd-eye h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-dark-text);
+        }
+
+        .about-3rd-eye .description {
+            font-size: 1.1rem;
+            color: var(--color-medium-text);
+            max-width: 750px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-3rd-eye .powered-by {
+            font-size: 1rem;
+            color: var(--color-light-text);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .about-3rd-eye .powered-by strong {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .usp-item {
+            text-align: center;
+            padding: var(--spacing-sm);
+            background-color: var(--color-white);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .usp-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-normal);
+        }
+
+        .usp-item i {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .usp-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-dark-text);
+        }
+
+        .usp-item p {
+            font-size: 0.95rem;
+            color: var(--color-medium-text);
+        }
+
+        /* --- Dashboard Overview Section --- */
+        .dashboard-overview-section {
+            background-color: #f1f3f5;
+            padding-top: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-radius: var(--card-radius);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-section);
+        }
+
+        .dashboard-overview-section .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-dark-text);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: var(--spacing-md);
+            padding: 0 20px;
+        }
+
+        .dashboard-card {
+            background-color: var(--color-white);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-normal);
+            padding: var(--spacing-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-left-color 0.3s ease-in-out;
+            overflow: hidden;
+            border-left: 6px solid transparent;
+            position: relative;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-xs);
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .card-header i {
+            font-size: 2.2rem;
+            margin-right: 15px;
+            color: inherit;
+            opacity: 0.9;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--color-dark-text);
+            letter-spacing: 0.01em;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: var(--color-medium-text);
+        }
+
+        .card-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-content .highlight-warning,
+        .card-content .highlight-critical {
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-content .highlight-warning { color: var(--color-warning); }
+        .card-content .highlight-critical { color: var(--color-danger); }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #dee2e6;
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--color-success);
+            border-radius: 5px;
+            transition: width 0.7s ease-out;
+        }
+
+        .card-content a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            margin-right: 12px;
+            transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-content a:hover {
+            color: var(--color-primary);
+            opacity: 0.8;
+        }
+
+        /* Theming for dashboard cards */
+        .card-infra-inventory { border-left-color: var(--color-primary); } .card-infra-inventory .card-header i { color: var(--color-primary); } .card-infra-inventory .progress-bar { background-color: var(--color-success); }
+        .card-licensing { border-left-color: var(--color-info); } .card-licensing .card-header i { color: var(--color-info); } .card-licensing .highlight-warning { color: var(--color-warning); }
+        .card-monitoring { border-left-color: var(--color-warning); } .card-monitoring .card-header i { color: var(--color-warning); }
+        .card-simulation { border-left-color: var(--color-info); } .card-simulation .card-header i { color: var(--color-info); }
+        .card-security { border-left-color: var(--color-danger); background-color: var(--color-danger); color: #fff; } .card-security .card-header i { color: #fff; } .card-security .card-header h2 { color: #fff; } .card-security .card-content p { color: #eee; } .card-security .highlight-critical { color: #fff; } .card-security .highlight-critical i { color: #fff; } .card-security .progress-bar { background-color: var(--color-warning); }
+        .card-platforms { border-left-color: var(--color-secondary); } .card-platforms .card-header i { color: var(--color-secondary); } .card-platforms a { color: var(--color-primary); } .card-platforms a:hover { color: #0056b3; }
+        .card-nfvi { border-left-color: var(--color-light-text); } .card-nfvi .card-header i { color: var(--color-light-text); } .card-nfvi .progress-bar { background-color: var(--color-success); }
+        .card-network-devices { border-left-color: var(--color-medium-text); background-color: var(--color-medium-text); color: #fff; } .card-network-devices .card-header i { color: #fff; } .card-network-devices .card-header h2 { color: #fff; } .card-network-devices .card-content p { color: #ddd; }
+        .card-ip-portal { border-left-color: var(--color-success); } .card-ip-portal .card-header i { color: var(--color-success); }
+        .card-healthchecks { border-left-color: var(--color-health); } .card-healthchecks .card-header i { color: var(--color-health); } .card-healthchecks .highlight-critical { color: var(--color-danger); }
+        .card-ticketing { border-left-color: var(--color-warning); } .card-ticketing .card-header i { color: var(--color-warning); } .card-ticketing .link-jira { color: #0052CC; } .card-ticketing .link-sharepoint { color: #0078D4; } .card-ticketing a:hover { color: var(--color-primary); }
+
+
+        /* --- Navigation Button to Health Checks Section --- */
+        .section-navigation {
+            display: block;
+            width: auto;
+            margin: var(--spacing-lg) auto var(--spacing-lg) auto;
+            padding: 18px 35px;
+            background-color: var(--color-primary);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: var(--button-radius);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+        }
+
+        .section-navigation:hover {
+            background-color: #0a58ca;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(10, 88, 202, 0.5);
+        }
+
+        /* --- Health Checks Section --- */
+        .health-checks-section {
+            background-color: var(--color-white);
+            padding-top: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-radius: var(--card-radius);
+            margin-top: var(--spacing-lg);
+            box-shadow: var(--shadow-normal);
+            text-align: center;
+        }
+
+        .health-checks-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .health-checks-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-dark-text);
+        }
+
+        /* Table styles */
+        .health-checks-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 var(--spacing-sm);
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .health-checks-table th,
+        .health-checks-table td {
+            padding: 18px 25px;
+            vertical-align: middle;
+        }
+
+        .health-checks-table th {
+            background-color: var(--color-white);
+            color: var(--color-medium-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #e9ecef;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .health-checks-table td {
+            background-color: var(--color-white);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-subtle);
+            font-size: 0.9rem;
+            color: var(--color-dark-text);
+        }
+
+        .health-checks-table td.status-ok { color: var(--color-success); font-weight: 500; }
+        .health-checks-table td.status-warning { color: var(--color-warning); font-weight: 500; }
+        .health-checks-table td.status-critical { color: var(--color-danger); font-weight: 500; }
+        .health-checks-table td.status-unknown { color: var(--color-secondary); }
+
+        .health-checks-table td i { margin-right: 8px; }
+
+        /* Column widths */
+        .col-function { width: 15%; }
+        .col-component { width: 15%; }
+        .col-health-score { width: 8%; text-align: center; }
+        .col-service-assurance { width: 10%; text-align: center; } /* New Column */
+        .col-latency { width: 8%; text-align: center; }
+        .col-throughput { width: 10%; text-align: center; }
+        .col-resource-util { width: 12%; text-align: center; }
+        .col-security-status { width: 5%; text-align: center; } /* New Column */
+        .col-last-check { width: 7%; text-align: center; }
+
+
+        /* --- Key Benefits Section --- */
+        .key-benefits-section {
+            background-color: #f1f3f5;
+            text-align: center;
+        }
+
+        .key-benefits-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-dark-text);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .benefit-item {
+            padding: var(--spacing-sm);
+            background-color: var(--color-white);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-normal);
+        }
+
+        .benefit-item i {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .benefit-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-dark-text);
+        }
+
+        .benefit-item p {
+            font-size: 0.95rem;
+            color: var(--color-medium-text);
+        }
+
+        /* --- How it Works Section --- */
+        .how-it-works-section {
+             text-align: center;
+        }
+
+        .how-it-works-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-dark-text);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .process-step .step-icon {
+            font-size: 3rem;
+            color: var(--color-info);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .process-step .step-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-dark-text);
+        }
+
+        .process-step p {
+            font-size: 0.95rem;
+            color: var(--color-medium-text);
+        }
+
+        /* --- Contact/Call to Action Section --- */
+        .cta-section {
+            background: linear-gradient(to right, var(--color-primary), var(--color-info));
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: var(--card-radius);
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3), 0 5px 15px rgba(13, 202, 240, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-button {
+            display: inline-block;
+            width: auto;
+            margin: 0 auto;
+            padding: 18px 35px;
+            background-color: var(--color-warning);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: var(--button-radius);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 8px 20px rgba(253, 126, 20, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(230, 126, 34, 0.5);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: var(--spacing-sm) 20px;
+            margin-top: var(--spacing-xl);
+            color: var(--color-light-text);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1200px) {
+            .container { max-width: 992px; }
+            header h1 { font-size: 2.8rem; }
+            .hero-section { padding: 80px 20px; }
+            .hero-section h2 { font-size: 2.2rem; }
+            .hero-section p { font-size: 1.1rem; }
+            .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 2.0rem; }
+            .usp-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+            .card-header h2 { font-size: 1.05rem; }
+            .card-content p { font-size: 0.9rem; }
+            .health-checks-table th, .health-checks-table td { padding: 15px 20px; font-size: 0.85rem; }
+            .col-function { width: 30%; } .col-component { width: 25%; }
+            .col-health-score, .col-latency, .col-throughput, .col-resource-util, .col-last-check { width: auto; }
+        }
+
+        @media (max-width: 992px) {
+            .container { max-width: 768px; }
+            header h1 { font-size: 2.8rem; }
+            .hero-section { padding: 70px 20px; }
+            .hero-section h2 { font-size: 2.0rem; }
+            .hero-section p { font-size: 1.1rem; }
+            .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 1.8rem; }
+            .usp-item i, .process-step .step-icon { font-size: 2.6rem; }
+            .usp-item h3, .process-step h3 { font-size: 1.1rem; }
+            .usp-item p, .process-step p { font-size: 0.9rem; }
+            .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-sm); }
+            .card-header h2 { font-size: 1rem; }
+            .card-content p { font-size: 0.9rem; }
+            .health-checks-table th, .health-checks-table td { padding: 12px 15px; font-size: 0.8rem; }
+            .col-function { width: 35%; } .col-component { width: 30%; }
+            .col-health-score, .col-latency, .col-throughput, .col-resource-util, .col-last-check { display: none; }
+            .section-navigation { width: 220px; font-size: 1rem;}
+            .cta-button { padding: 15px 30px; font-size: 1.1rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { max-width: 100%; padding: 20px; }
+            header h1 { font-size: 2.2rem; }
+            .hero-section { padding: 60px 20px; }
+            .hero-section h2 { font-size: 1.8rem; }
+            .hero-section p { font-size: 1rem; }
+            .dashboard-grid { grid-template-columns: 1fr; margin-bottom: var(--spacing-md); }
+            .health-checks-section { margin-top: var(--spacing-md); padding-top: var(--spacing-md); }
+            .health-checks-header h1 { font-size: 1.8rem; }
+            .section-navigation { width: 200px; font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 15px; margin-bottom: var(--spacing-sm); }
+            header h1 { font-size: 1.8rem; }
+            .hero-section { padding: 50px 15px; }
+            .hero-section h2 { font-size: 1.6rem; }
+            .hero-section p { font-size: 0.95rem; }
+            .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 1.6rem; }
+            .dashboard-grid { gap: var(--spacing-sm); margin-bottom: var(--spacing-sm);}
+            .health-checks-section { margin-top: var(--spacing-sm); padding-top: var(--spacing-sm); }
+            .health-checks-header h1 { font-size: 1.6rem; }
+            .health-checks-table { border-spacing: 0 var(--spacing-xs); }
+            .health-checks-table th, .health-checks-table td { padding: 15px 15px; }
+            .usp-item, .benefit-item, .process-step { padding: var(--spacing-xs); }
+            .usp-item i, .process-step .step-icon { font-size: 2.4rem; }
+            .usp-item h3, .process-step h3 { font-size: 1.1rem; }
+            .usp-item p, .process-step p { font-size: 0.9rem; }
+            .section-navigation { width: 180px; font-size: 0.9rem; padding: 12px 20px; }
+            .cta-button { padding: 12px 25px; font-size: 1rem; }
+            footer { padding: var(--spacing-xs) 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Telecom Network Operator Audit & Monitoring</h1>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h2>"3rd Eye": Your Vigilant Partner in Telecom Network Assurance</h2>
+            <p>
+                Leveraging the power of Invences, "3rd Eye" provides deep, real-time visibility into your entire telecom network. From core functions to infrastructure and security, we offer proactive auditing and intelligent monitoring to ensure peak performance, unwavering compliance, and resilient operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- 5G Architecture Diagram Section -->
+    <section class="architecture-diagram-section">
+        <div class="container">
+            <h2>The "3rd Eye" View: Your Network at a Glance</h2>
+            <div class="architecture-diagram">
+                <!-- UE -->
+                <div class="arch-block ue">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>UE</span>
+                </div>
+                <!-- Antenna/Radio -->
+                <div class="arch-block antenna">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <span>Antenna/RU</span>
+                </div>
+                <!-- DU/CU -->
+                <div class="arch-block du">
+                    <i class="fas fa-server"></i>
+                    <span>DU</span>
+                </div>
+                <div class="arch-block cu">
+                    <i class="fas fa-server"></i>
+                    <span>CU</span>
+                </div>
+                <!-- Core Network Functions -->
+                <div class="arch-block amf">
+                    <i class="fas fa-route"></i>
+                    <span>AMF</span>
+                </div>
+                <div class="arch-block smf">
+                    <i class="fas fa-file-signature"></i>
+                    <span>SMF</span>
+                </div>
+                <div class="arch-block upf">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>UPF</span>
+                </div>
+                <div class="arch-block pcf">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>PCF</span>
+                </div>
+                <div class="arch-block udm">
+                    <i class="fas fa-id-card-alt"></i>
+                    <span>UDM</span>
+                </div>
+                <div class="arch-block nrf">
+                    <i class="fas fa-network-wired"></i>
+                    <span>NRF</span>
+                </div>
+                <div class="arch-block ausf">
+                    <i class="fas fa-users"></i>
+                    <span>AUSF</span>
+                </div>
+                <!-- IMS -->
+                <div class="arch-block ims">
+                    <i class="fas fa-phone-volume"></i>
+                    <span>IMS</span>
+                </div>
+                <!-- Data Network -->
+                <div class="arch-block data-net">
+                    <i class="fas fa-database"></i>
+                    <span>Data Network</span>
+                </div>
+            </div>
+            <!-- Simplified connecting lines example - you'd typically use SVG or complex CSS -->
+            <div class="arch-connections">
+                <div class="conn-line" style="--from: ue; --to: antenna; --color: var(--color-secondary);"></div>
+                <div class="conn-line" style="--from: antenna; --to: du; --color: var(--color-info);"></div>
+                <div class="conn-line" style="--from: du; --to: cu; --color: var(--color-primary);"></div>
+                <div class="conn-line" style="--from: cu; --to: amf; --color: var(--color-success);"></div>
+                <div class="conn-line" style="--from: cu; --to: smf; --color: var(--color-primary);"></div>
+                <div class="conn-line" style="--from: cu; --to: upf; --color: var(--color-success);"></div>
+                <div class="conn-line" style="--from: smf; --to: pcf; --color: var(--color-warning);"></div>
+                <div class="conn-line" style="--from: smf; --to: udm; --color: var(--color-danger);"></div>
+                <div class="conn-line" style="--from: amf; --to: nrf; --color: var(--color-secondary);"></div>
+                <div class="conn-line" style="--from: amf; --to: ausf; --color: var(--color-info);"></div>
+                <div class="conn-line" style="--from: smf; --to: ims; --color: var(--color-info);"></div>
+                <div class="conn-line" style="--from: upf; --to: data-net; --color: var(--color-primary);"></div>
+                <div class="conn-line" style="--from: smf; --to: data-net; --color: var(--color-primary);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About 3rd Eye Section -->
+    <section class="about-3rd-eye">
+        <div class="container">
+            <h2>What is "3rd Eye" by Invences?</h2>
+            <p class="description">
+                "3rd Eye" is more than just a monitoring tool; it's an intelligent, AI-driven ecosystem designed to provide telecom network operators with an unparalleled level of insight and control. Powered by Invences' advanced analytics, "3rd Eye" acts as a pervasive, invisible layer of oversight, scrutinizing every critical component and process. Our solution automates tedious audit tasks, identifies operational risks and performance anomalies across complex networks, and ensures adherence to stringent industry standards and regulatory mandates. Empower your teams with the foresight to prevent outages, optimize resource utilization, and deliver superior service quality.
+            </p>
+            <p class="powered-by">
+                Intelligent Oversight. Delivered by <strong>Invences</strong>
+            </p>
+            <div class="usp-grid">
+                <div class="usp-item">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>End-to-End Network Visibility</h3>
+                    <p>Monitor all network layers from radio access to core and IT systems.</p>
+                </div>
+                <div class="usp-item">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Telecom Compliance Mastery</h3>
+                    <p>Adhere to regulatory requirements and licensing agreements effortlessly.</p>
+                </div>
+                <div class="usp-item">
+                    <i class="fas fa-plug"></i>
+                    <h3>Seamless Integration</h3>
+                    <p>Works with your existing OSS, BSS, and NFVI infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Overview Section -->
+    <section class="dashboard-overview-section">
+        <div class="container">
+            <h2 class="section-title">Your Comprehensive Telecom Infrastructure Audit Dashboard</h2>
+            <div class="dashboard-grid">
+
+                <!-- CARD 1: Infra Inventory Audit -->
+                <div class="dashboard-card card-infra-inventory">
+                    <div class="card-header">
+                        <i class="fas fa-server"></i>
+                        <h2>Infra Inventory</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Total Assets:</strong> 25,000+</p>
+                        <p><strong>Audited:</strong> 22,000 (88%)</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: HW/SW Licensing Audit -->
+                <div class="dashboard-card card-licensing">
+                    <div class="card-header">
+                        <i class="fas fa-file-contract"></i>
+                        <h2>HW/SW Licensing</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>License Compliance:</strong> 99.1%</p>
+                        <p><strong>Expiring Soon:</strong> 15</p>
+                        <p class="highlight-warning"><i class="fas fa-exclamation-triangle"></i> 3 Non-Compliant</p>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Monitoring Tools Audit -->
+                <div class="dashboard-card card-monitoring">
+                    <div class="card-header">
+                        <i class="fas fa-binoculars"></i>
+                        <h2>Monitoring Tools</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Active Tools:</strong> 75</p>
+                        <p><strong>Coverage:</strong> 95%</p>
+                        <p><strong>Status:</strong> Optimal</p>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Simulation Tools Audit -->
+                <div class="dashboard-card card-simulation">
+                    <div class="card-header">
+                        <i class="fas fa-atom"></i>
+                        <h2>Simulation Tools</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Scenario Library:</strong> 200+</p>
+                        <p><strong>Recent Runs:</strong> 150+</p>
+                        <p><strong>Accuracy:</strong> 98.8%</p>
+                    </div>
+                </div>
+
+                <!-- CARD 5: Security & Health Checks Audit -->
+                <div class="dashboard-card card-security">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h2>Security Posture</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Security Tools:</strong> 90+</p>
+                        <p><strong>Vulnerabilities Found:</strong> 5</p>
+                        <p class="highlight-critical"><i class="fas fa-times-circle"></i> 0 Critical Alerts</p>
+                    </div>
+                </div>
+
+                <!-- CARD 6: Platforms and Network Functions (VNF/CNF) -->
+                <div class="dashboard-card card-platforms">
+                    <div class="card-header">
+                        <i class="fas fa-sitemap"></i>
+                        <h2>Core Network Functions</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Platforms:</strong> 5G SA, 4G EPC, IMS</p>
+                        <p><strong>VNF/CNF Status:</strong> 99.5% Healthy</p>
+                        <p><strong>Instances:</strong> 1000s</p>
+                    </div>
+                </div>
+
+                <!-- CARD 7: NFVI - Compute, Storage, Network -->
+                <div class="dashboard-card card-nfvi">
+                    <div class="card-header">
+                        <i class="fas fa-microchip"></i>
+                        <h2>NFVI Health</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Compute Health:</strong> 99.8%</p>
+                        <p><strong>Storage Avail.:</strong> 85%</p>
+                        <p><strong>Network Util.:</strong> 70%</p>
+                    </div>
+                </div>
+
+                <!-- CARD 8: Network Devices (TOR, Routers, Firewalls) -->
+                <div class="dashboard-card card-network-devices">
+                    <div class="card-header">
+                        <i class="fas fa-route"></i>
+                        <h2>Network Devices</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Active Devices:</strong> 5,000+</p>
+                        <p><strong>Uptime Avg:</strong> 99.99%</p>
+                        <p><strong>Config Compliant:</strong> 99.9%</p>
+                    </div>
+                </div>
+
+                <!-- CARD 9: IP Portal (Addresses, Subnets, VLANs) -->
+                <div class="dashboard-card card-ip-portal">
+                    <div class="card-header">
+                        <i class="fas fa-address-book"></i>
+                        <h2>IP Address Mgt.</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Total IPs:</strong> 2,000,000+</p>
+                        <p><strong>Active Subnets:</strong> 7,500+</p>
+                        <p><strong>Active VLANs:</strong> 2,000+</p>
+                    </div>
+                </div>
+
+                <!-- CARD 10: E2E Healthchecks (Connectivity, Ping) -->
+                <div class="dashboard-card card-healthchecks">
+                    <div class="card-header">
+                        <i class="fas fa-heartbeat"></i>
+                        <h2>End-to-End Health</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Overall Network Health:</strong> 99.6%</p>
+                        <p><strong>Connectivity OK:</strong> 99.9%</p>
+                        <p><strong>Latency Avg:</strong> 10ms</p>
+                    </div>
+                </div>
+
+                <!-- CARD 11: Ticketing & Documentation Systems -->
+                <div class="dashboard-card card-ticketing">
+                    <div class="card-header">
+                        <i class="fas fa-book-open"></i>
+                        <h2>Ticketing & Docs</h2>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Open Audit Tickets:</strong> 25</p>
+                        <p><strong>Resolved:</strong> 500+</p>
+                        <p><a href="#" class="link-jira"><i class="fab fa-jira"></i> Jira</a> | <a href="#" class="link-sharepoint"><i class="fas fa-folder-open"></i> Confluence</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Navigation Button to Health Checks Section -->
+            <a href="#health-checks-section" class="section-navigation">
+                <i class="fas fa-arrow-down"></i> Explore 5G Core Health
+            </a>
+        </div>
+    </section>
+
+    <!-- Health Checks Section -->
+    <section class="health-checks-section" id="health-checks-section">
+        <div class="container">
+            <div class="health-checks-header">
+                <h1>5G Core Network Function Health</h1>
+            </div>
+
+            <table class="health-checks-table">
+                <thead>
+                    <tr>
+                        <th class="col-function">Function</th>
+                        <th class="col-component">Component/Instance</th>
+                        <th class="col-health-score">Health Score</th>
+                        <th class="col-service-assurance">Service Assurance</th>
+                        <th class="col-latency">Avg. Latency</th>
+                        <th class="col-throughput">Throughput</th>
+                        <th class="col-resource-util">Resource Util</th>
+                        <th class="col-security-status">Sec. Status</th>
+                        <th class="col-last-check">Last Check</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Row 1: AMF -->
+                    <tr>
+                        <td class="col-function">AMF</td>
+                        <td class="col-component">AMF-Instance-01</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 98%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">12ms</td>
+                        <td class="col-throughput">1.5 Gbps</td>
+                        <td class="col-resource-util">CPU: 65% / Mem: 70%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:30</td>
+                    </tr>
+                    <!-- Example Row 2: SMF -->
+                    <tr>
+                        <td class="col-function">SMF</td>
+                        <td class="col-component">SMF-Instance-03</td>
+                        <td class="col-health-score status-warning"><i class="fas fa-exclamation-triangle"></i> 85%</td>
+                        <td class="col-service-assurance status-warning">Good</td>
+                        <td class="col-latency">25ms</td>
+                        <td class="col-throughput">1.2 Gbps</td>
+                        <td class="col-resource-util">CPU: 75% / Mem: 80%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:32</td>
+                    </tr>
+                    <!-- Example Row 3: UPF -->
+                    <tr>
+                        <td class="col-function">UPF</td>
+                        <td class="col-component">UPF-Cluster-A</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 95%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">8ms</td>
+                        <td class="col-throughput">5.8 Gbps</td>
+                        <td class="col-resource-util">CPU: 55% / Mem: 60%</td>
+                        <td class="col-security-status status-warning"><i class="fas fa-exclamation-triangle"></i></td>
+                        <td class="col-last-check">2023-10-27 10:31</td>
+                    </tr>
+                    <!-- Example Row 4: PCF -->
+                    <tr>
+                        <td class="col-function">PCF</td>
+                        <td class="col-component">PCF-Node-02</td>
+                        <td class="col-health-score status-critical"><i class="fas fa-times-circle"></i> 60%</td>
+                        <td class="col-service-assurance status-critical">Degraded</td>
+                        <td class="col-latency">50ms</td>
+                        <td class="col-throughput">0.5 Gbps</td>
+                        <td class="col-resource-util">CPU: 90% / Mem: 95%</td>
+                        <td class="col-security-status status-danger"><i class="fas fa-exclamation-triangle"></i></td>
+                        <td class="col-last-check">2023-10-27 10:29</td>
+                    </tr>
+                    <!-- Example Row 5: NRF -->
+                    <tr>
+                        <td class="col-function">NRF</td>
+                        <td class="col-component">NRF-Primary</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 99%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">15ms</td>
+                        <td class="col-throughput">0.2 Gbps</td>
+                        <td class="col-resource-util">CPU: 40% / Mem: 45%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:30</td>
+                    </tr>
+                    <!-- Example Row 6: AUSF -->
+                    <tr>
+                        <td class="col-function">AUSF</td>
+                        <td class="col-component">AUSF-Cluster-B</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 97%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">18ms</td>
+                        <td class="col-throughput">0.8 Gbps</td>
+                        <td class="col-resource-util">CPU: 50% / Mem: 55%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:33</td>
+                    </tr>
+                    <!-- Example Row 7: UDM -->
+                    <tr>
+                        <td class="col-function">UDM</td>
+                        <td class="col-component">UDM-Primary-Site</td>
+                        <td class="col-health-score status-warning"><i class="fas fa-exclamation-triangle"></i> 70%</td>
+                        <td class="col-service-assurance status-warning">Fair</td>
+                        <td class="col-latency">30ms</td>
+                        <td class="col-throughput">0.3 Gbps</td>
+                        <td class="col-resource-util">CPU: 80% / Mem: 85%</td>
+                        <td class="col-security-status status-warning"><i class="fas fa-exclamation-triangle"></i></td>
+                        <td class="col-last-check">2023-10-27 10:31</td>
+                    </tr>
+                    <!-- Example Row 8: IMS Core -->
+                    <tr>
+                        <td class="col-function">IMS Core</td>
+                        <td class="col-component">IMS-SBC-01</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 99%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">10ms</td>
+                        <td class="col-throughput">2.5 Gbps</td>
+                        <td class="col-resource-util">CPU: 50% / Mem: 55%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:34</td>
+                    </tr>
+                    <!-- Example Row 9: Data Network (Packet Core) -->
+                    <tr>
+                        <td class="col-function">Data Network</td>
+                        <td class="col-component">PGW-U/SMF-UPF</td>
+                        <td class="col-health-score status-ok"><i class="fas fa-check-circle"></i> 97%</td>
+                        <td class="col-service-assurance status-ok">Excellent</td>
+                        <td class="col-latency">9ms</td>
+                        <td class="col-throughput">6.0 Gbps</td>
+                        <td class="col-resource-util">CPU: 60% / Mem: 65%</td>
+                        <td class="col-security-status status-ok"><i class="fas fa-lock"></i></td>
+                        <td class="col-last-check">2023-10-27 10:32</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Key Benefits Section -->
+    <section class="key-benefits-section">
+        <div class="container">
+            <h2>The Invences "3rd Eye" Advantage for Telecom Operators</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Cost Optimization</h3>
+                    <p>Minimize expenditure by ensuring license compliance and efficient resource allocation, avoiding costly penalties and over-provisioning.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Agility & Responsiveness</h3>
+                    <p>Quickly adapt to changing network demands and resolve issues with real-time insights, improving service delivery.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-lock"></i>
+                    <h3>Fortified Security</h3>
+                    <p>Proactively identify and address security vulnerabilities across your entire telecom infrastructure, protecting against threats.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Seamless Compliance</h3>
+                    <p>Effortlessly meet strict industry regulations (e.g., GDPR, NEBS) and internal policy standards with automated auditing.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users-cog"></i>
+                    <h3>Enhanced Operational Efficiency</h3>
+                    <p>Automate complex audit processes, freeing up valuable IT resources for strategic initiatives.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-eye"></i>
+                    <h3>Unparalleled Visibility</h3>
+                    <p>Gain deep insights into every aspect of your IT landscape, from network functions to physical inventory, 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <h2>How "3rd Eye" Delivers Assurance</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <span class="step-number">01</span>
+                    <i class="fas fa-cloud-download-alt step-icon"></i>
+                    <h3>Intelligent Data Aggregation</h3>
+                    <p>Connects seamlessly with your OSS, BSS, NFVI, RAN, and IT inventory for a unified data source.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">02</span>
+                    <i class="fas fa-brain step-icon"></i>
+                    <h3>AI-Powered Audit & Analysis</h3>
+                    <p>Invences' engine identifies anomalies, policy violations, and performance regressions.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">03</span>
+                    <i class="fas fa-desktop"></i>
+                    <h3>Actionable Insight Dashboard</h3>
+                    <p>Visualize your findings, risks, and compliance status on an intuitive, real-time dashboard.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">04</span>
+                    <i class="fas fa-bell"></i>
+                    <h3>Proactive Alerting & Remediation</h3>
+                    <p>Timely notifications and workflow integration to drive rapid issue resolution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Call to Action Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Elevate Your Network Assurance with "3rd Eye"</h2>
+            <p>Discover how "3rd Eye" by Invences can provide the ultimate visibility and control for your telecom network. Transform your operations with proactive monitoring and intelligent auditing.</p>
+            <a href="#contact" class="cta-button">Request a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Invences. All rights reserved. | Telecom Network Operator Audit & Monitoring</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+/* --- General Styles & Variables --- */
+:root {
+    --color-primary: #0d6efd; /* Blue - core actions */
+    --color-secondary: #6c757d; /* Gray - secondary elements */
+    --color-success: #198754; /* Green - OK status */
+    --color-warning: #fd7e14; /* Orange - alerts */
+    --color-danger: #dc3545; /* Red - critical issues */
+    --color-info: #0dcaf0; /* Cyan - informative icons */
+    --color-light-gray: #f8f9fa; /* Background */
+    --color-white: #ffffff; /* Card/section backgrounds */
+    --color-dark-text: #212529; /* Primary text */
+    --color-medium-text: #495057; /* Secondary text */
+    --color-light-text: #6c757d; /* Tertiary text */
+
+    --font-family-primary: 'Inter', sans-serif;
+
+    --spacing-xl: 80px;
+    --spacing-lg: 60px;
+    --spacing-md: 40px;
+    --spacing-sm: 30px;
+    --spacing-xs: 20px;
+
+    --card-radius: 15px;
+    --header-radius: 12px;
+    --button-radius: 10px;
+
+    --shadow-normal: 0 8px 25px rgba(0, 0, 0, 0.07);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-section: inset 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+body {
+    font-family: var(--font-family-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-text);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+section {
+    width: 100%;
+    padding: var(--spacing-lg) 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* --- Header --- */
+header {
+    width: 100%;
+    max-width: 1400px;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    padding: 35px 20px;
+    background-color: var(--color-white);
+    border-radius: var(--header-radius);
+    box-shadow: var(--shadow-normal);
+    box-sizing: border-box;
+}
+
+header h1 {
+    color: var(--color-dark-text);
+    font-weight: 700;
+    margin: 0;
+    font-size: 3.2rem;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--card-radius);
+    position: relative;
+    box-shadow: 0 15px 50px rgba(13, 110, 253, 0.3), 0 10px 20px rgba(111, 66, 193, 0.3);
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- 5G Architecture Diagram Section --- */
+.architecture-diagram-section {
+    background-color: var(--color-white);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-radius: var(--card-radius);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-normal);
+    text-align: center;
+}
+
+.architecture-diagram-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark-text);
+}
+
+.architecture-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: var(--spacing-md) auto 0 auto;
+    padding: 0 20px;
+}
+
+.arch-block {
+    background-color: var(--color-light-gray);
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px 20px;
+    text-align: center;
+    min-width: 120px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.arch-block:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-normal);
+}
+
+.arch-block i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.arch-block span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-dark-text);
+    white-space: nowrap;
+}
+
+/* Specific block styling and borders */
+.arch-block.ue { border-left: 4px solid var(--color-secondary); } /* Gray */
+.arch-block.antenna { border-left: 4px solid var(--color-info); } /* Cyan */
+.arch-block.ru { border-left: 4px solid var(--color-warning); } /* Orange */
+.arch-block.du { border-left: 4px solid var(--color-primary); } /* Blue */
+.arch-block.cu { border-left: 4px solid var(--color-success); } /* Green */
+
+.arch-block.ims { border-left: 4px solid #6f42c1; } /* Purple */
+.arch-block.data-net { border-left: 4px solid var(--color-primary); } /* Blue */
+
+.arch-block.amf { border-left: 4px solid var(--color-primary); } /* Blue */
+.arch-block.smf { border-left: 4px solid var(--color-info); } /* Cyan */
+.arch-block.upf { border-left: 4px solid var(--color-success); } /* Green */
+.arch-block.pcf { border-left: 4px solid var(--color-warning); } /* Orange */
+.arch-block.udm { border-left: 4px solid var(--color-danger); } /* Red */
+.arch-block.nrf { border-left: 4px solid var(--color-secondary); } /* Gray */
+.arch-block.ausf { border-left: 4px solid var(--color-info); } /* Cyan */
+
+/* Simplified connections - visual flow is key here */
+.arch-connections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-xs);
+    gap: 10px;
+}
+.conn-line {
+    width: 50px; /* Example width for lines */
+    height: 5px;
+    background-color: var(--color-primary); /* Default color */
+    margin: 0 5px;
+}
+/* Apply dynamic colors and positions if using more advanced CSS */
+
+
+/* --- "About 3rd Eye" Section --- */
+.about-3rd-eye {
+    text-align: center;
+}
+
+.about-3rd-eye h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark-text);
+}
+
+.about-3rd-eye .description {
+    font-size: 1.1rem;
+    color: var(--color-medium-text);
+    max-width: 750px;
+    margin-bottom: var(--spacing-md);
+}
+
+.about-3rd-eye .powered-by {
+    font-size: 1rem;
+    color: var(--color-light-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-3rd-eye .powered-by strong {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.usp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.usp-item {
+    text-align: center;
+    padding: var(--spacing-sm);
+    background-color: var(--color-white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.usp-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-normal);
+}
+
+.usp-item i {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.usp-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-dark-text);
+}
+
+.usp-item p {
+    font-size: 0.95rem;
+    color: var(--color-medium-text);
+}
+
+/* --- Dashboard Overview Section --- */
+.dashboard-overview-section {
+    background-color: #f1f3f5;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-radius: var(--card-radius);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-section);
+}
+
+.dashboard-overview-section .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark-text);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: var(--spacing-md);
+    padding: 0 20px;
+}
+
+.dashboard-card {
+    background-color: var(--color-white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-normal);
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-left-color 0.3s ease-in-out;
+    overflow: hidden;
+    border-left: 6px solid transparent;
+    position: relative;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.card-header i {
+    font-size: 2.2rem;
+    margin-right: 15px;
+    color: inherit;
+    opacity: 0.9;
+}
+
+.card-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-dark-text);
+    letter-spacing: 0.01em;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: var(--color-medium-text);
+}
+
+.card-content p:last-child {
+    margin-bottom: 0;
+}
+
+.card-content .highlight-warning,
+.card-content .highlight-critical {
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-content .highlight-warning { color: var(--color-warning); }
+.card-content .highlight-critical { color: var(--color-danger); }
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #dee2e6;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--color-success);
+    border-radius: 5px;
+    transition: width 0.7s ease-out;
+}
+
+.card-content a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    margin-right: 12px;
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-content a:hover {
+    color: var(--color-primary);
+    opacity: 0.8;
+}
+
+/* Theming for dashboard cards */
+.card-infra-inventory { border-left-color: var(--color-primary); } .card-infra-inventory .card-header i { color: var(--color-primary); } .card-infra-inventory .progress-bar { background-color: var(--color-success); }
+.card-licensing { border-left-color: var(--color-info); } .card-licensing .card-header i { color: var(--color-info); } .card-licensing .highlight-warning { color: var(--color-warning); }
+.card-monitoring { border-left-color: var(--color-warning); } .card-monitoring .card-header i { color: var(--color-warning); }
+.card-simulation { border-left-color: var(--color-info); } .card-simulation .card-header i { color: var(--color-info); }
+.card-security { border-left-color: var(--color-danger); background-color: var(--color-danger); color: #fff; } .card-security .card-header i { color: #fff; } .card-security .card-header h2 { color: #fff; } .card-security .card-content p { color: #eee; } .card-security .highlight-critical { color: #fff; } .card-security .highlight-critical i { color: #fff; } .card-security .progress-bar { background-color: var(--color-warning); }
+.card-platforms { border-left-color: var(--color-secondary); } .card-platforms .card-header i { color: var(--color-secondary); } .card-platforms a { color: var(--color-primary); } .card-platforms a:hover { color: #0056b3; }
+.card-nfvi { border-left-color: var(--color-light-text); } .card-nfvi .card-header i { color: var(--color-light-text); } .card-nfvi .progress-bar { background-color: var(--color-success); }
+.card-network-devices { border-left-color: var(--color-medium-text); background-color: var(--color-medium-text); color: #fff; } .card-network-devices .card-header i { color: #fff; } .card-network-devices .card-header h2 { color: #fff; } .card-network-devices .card-content p { color: #ddd; }
+.card-ip-portal { border-left-color: var(--color-success); } .card-ip-portal .card-header i { color: var(--color-success); }
+.card-healthchecks { border-left-color: var(--color-health); } .card-healthchecks .card-header i { color: var(--color-health); } .card-healthchecks .highlight-critical { color: var(--color-danger); }
+.card-ticketing { border-left-color: var(--color-warning); } .card-ticketing .card-header i { color: var(--color-warning); } .card-ticketing .link-jira { color: #0052CC; } .card-ticketing .link-sharepoint { color: #0078D4; } .card-ticketing a:hover { color: var(--color-primary); }
+
+
+/* --- Navigation Button to Health Checks Section --- */
+.section-navigation {
+    display: block;
+    width: auto;
+    margin: var(--spacing-lg) auto var(--spacing-lg) auto;
+    padding: 18px 35px;
+    background-color: var(--color-primary);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--button-radius);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.4);
+}
+
+.section-navigation:hover {
+    background-color: #0a58ca;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(10, 88, 202, 0.5);
+}
+
+/* --- Health Checks Section --- */
+.health-checks-section {
+    background-color: var(--color-white);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-radius: var(--card-radius);
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-normal);
+    text-align: center;
+}
+
+.health-checks-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.health-checks-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-dark-text);
+}
+
+/* Table styles */
+.health-checks-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 var(--spacing-sm);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.health-checks-table th,
+.health-checks-table td {
+    padding: 18px 25px;
+    vertical-align: middle;
+}
+
+.health-checks-table th {
+    background-color: var(--color-white);
+    color: var(--color-medium-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 2px solid #e9ecef;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.health-checks-table td {
+    background-color: var(--color-white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-subtle);
+    font-size: 0.9rem;
+    color: var(--color-dark-text);
+}
+
+.health-checks-table td.status-ok { color: var(--color-success); font-weight: 500; }
+.health-checks-table td.status-warning { color: var(--color-warning); font-weight: 500; }
+.health-checks-table td.status-critical { color: var(--color-danger); font-weight: 500; }
+.health-checks-table td.status-unknown { color: var(--color-secondary); }
+
+.health-checks-table td i { margin-right: 8px; }
+
+/* Column widths */
+.col-function { width: 15%; }
+.col-component { width: 15%; }
+.col-health-score { width: 8%; text-align: center; }
+.col-service-assurance { width: 10%; text-align: center; }
+.col-latency { width: 8%; text-align: center; }
+.col-throughput { width: 10%; text-align: center; }
+.col-resource-util { width: 12%; text-align: center; }
+.col-security-status { width: 5%; text-align: center; }
+.col-last-check { width: 7%; text-align: center; }
+
+
+/* --- Key Benefits Section --- */
+.key-benefits-section {
+    background-color: #f1f3f5;
+    text-align: center;
+}
+
+.key-benefits-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-dark-text);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.benefit-item {
+    padding: var(--spacing-sm);
+    background-color: var(--color-white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-subtle);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-normal);
+}
+
+.benefit-item i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.benefit-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-dark-text);
+}
+
+.benefit-item p {
+    font-size: 0.95rem;
+    color: var(--color-medium-text);
+}
+
+/* --- How it Works Section --- */
+.how-it-works-section {
+     text-align: center;
+}
+
+.how-it-works-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-dark-text);
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.process-step {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.process-step .step-icon {
+    font-size: 3rem;
+    color: var(--color-info);
+    margin-bottom: var(--spacing-xs);
+}
+
+.process-step .step-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.process-step h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-dark-text);
+}
+
+.process-step p {
+    font-size: 0.95rem;
+    color: var(--color-medium-text);
+}
+
+/* --- Contact/Call to Action Section --- */
+.cta-section {
+    background: linear-gradient(to right, var(--color-primary), var(--color-info));
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: var(--card-radius);
+    box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3), 0 5px 15px rgba(13, 202, 240, 0.3);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-button {
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+    padding: 18px 35px;
+    background-color: var(--color-warning);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--button-radius);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 8px 20px rgba(253, 126, 20, 0.4);
+}
+
+.cta-button:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(230, 126, 34, 0.5);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: var(--spacing-sm) 20px;
+    margin-top: var(--spacing-xl);
+    color: var(--color-light-text);
+    font-size: 0.9rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+    .container { max-width: 992px; }
+    header h1 { font-size: 2.8rem; }
+    .hero-section { padding: 80px 20px; }
+    .hero-section h2 { font-size: 2.2rem; }
+    .hero-section p { font-size: 1.1rem; }
+    .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 2.0rem; }
+    .usp-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+    .card-header h2 { font-size: 1.05rem; }
+    .card-content p { font-size: 0.9rem; }
+    .health-checks-table th, .health-checks-table td { padding: 15px 20px; font-size: 0.85rem; }
+    .col-function { width: 30%; } .col-component { width: 25%; }
+    .col-health-score, .col-latency, .col-throughput, .col-resource-util, .col-last-check { width: auto; }
+}
+
+@media (max-width: 992px) {
+    .container { max-width: 768px; }
+    header h1 { font-size: 2.8rem; }
+    .hero-section { padding: 70px 20px; }
+    .hero-section h2 { font-size: 2.0rem; }
+    .hero-section p { font-size: 1.1rem; }
+    .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 1.8rem; }
+    .usp-item i, .process-step .step-icon { font-size: 2.6rem; }
+    .usp-item h3, .process-step h3 { font-size: 1.1rem; }
+    .usp-item p, .process-step p { font-size: 0.9rem; }
+    .dashboard-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-sm); }
+    .card-header h2 { font-size: 1rem; }
+    .card-content p { font-size: 0.9rem; }
+    .health-checks-table th, .health-checks-table td { padding: 12px 15px; font-size: 0.8rem; }
+    .col-function { width: 35%; } .col-component { width: 30%; }
+    .col-health-score, .col-latency, .col-throughput, .col-resource-util, .col-last-check { display: none; }
+    .section-navigation { width: 220px; font-size: 1rem;}
+    .cta-button { padding: 15px 30px; font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+    header { max-width: 100%; padding: 20px; }
+    header h1 { font-size: 2.2rem; }
+    .hero-section { padding: 60px 20px; }
+    .hero-section h2 { font-size: 1.8rem; }
+    .hero-section p { font-size: 1rem; }
+    .dashboard-grid { grid-template-columns: 1fr; margin-bottom: var(--spacing-md); }
+    .health-checks-section { margin-top: var(--spacing-md); padding-top: var(--spacing-md); }
+    .health-checks-header h1 { font-size: 1.8rem; }
+    .section-navigation { width: 200px; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    header { padding: 15px; margin-bottom: var(--spacing-sm); }
+    header h1 { font-size: 1.8rem; }
+    .hero-section { padding: 50px 15px; }
+    .hero-section h2 { font-size: 1.6rem; }
+    .hero-section p { font-size: 0.95rem; }
+    .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 1.6rem; }
+    .dashboard-grid { gap: var(--spacing-sm); margin-bottom: var(--spacing-sm);}
+    .health-checks-section { margin-top: var(--spacing-sm); padding-top: var(--spacing-sm); }
+    .health-checks-header h1 { font-size: 1.6rem; }
+    .health-checks-table { border-spacing: 0 var(--spacing-xs); }
+    .health-checks-table th, .health-checks-table td { padding: 15px 15px; }
+    .usp-item, .benefit-item, .process-step { padding: var(--spacing-xs); }
+    .usp-item i, .process-step .step-icon { font-size: 2.4rem; }
+    .usp-item h3, .process-step h3 { font-size: 1.1rem; }
+    .usp-item p, .process-step p { font-size: 0.9rem; }
+    .section-navigation { width: 180px; font-size: 0.9rem; padding: 12px 20px; }
+    .cta-button { padding: 12px 25px; font-size: 1rem; }
+    footer { padding: var(--spacing-xs) 10px; }
+}
