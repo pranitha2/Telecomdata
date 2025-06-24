@@ -583,9 +583,43 @@
         <div class="container">
             <h2>Elevate Your Network Assurance with "3rd Eye"</h2>
             <p>Discover how "3rd Eye" by Invences can provide the ultimate visibility and control for your telecom network. Transform your operations with proactive monitoring and intelligent auditing.</p>
-            <a href="#contact" class="cta-button">Request a Consultation</a>
+            <!-- This is now a button that opens the modal -->
+            <button id="requestConsultationBtn" class="cta-button">Request a Consultation</button>
         </div>
     </section>
+
+    <!-- Consultation Form Modal -->
+    <div id="consultationFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Request a Consultation</h2>
+            <!-- The Formspree Form -->
+            <!-- !!! REPLACE 'YOUR_FORMSPREE_ID' WITH YOUR ACTUAL FORMSPREE ID !!! -->
+            <!-- !!! REPLACE 'YOUR_EMAIL_FOR_NOTIFICATIONS@example.com' WITH YOUR EMAIL ADDRESS !!! -->
+            <form id="consultationForm" method="POST" action="https://formspree.io/f/mdkzpkgd">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional):</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 123 456 7890">
+                </div>
+                <div class="form-group">
+                    <label for="details">Tell us about your needs:</label>
+                    <textarea id="details" name="details" rows="4" required placeholder="Describe your network challenges, goals, or specific areas you'd like to audit."></textarea>
+                </div>
+                <!-- Hidden field to specify your email for receiving submissions -->
+                <input type="hidden" name="_replyto" value="pranithab68@gmail.com">
+                <button type="submit" class="submit-button">Send Request</button>
+            </form>
+            <div id="formMessage" class="form-message"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -593,6 +627,86 @@
             <p>© 2017 Invences. All rights reserved. | Telecom Network Operator Audit & Monitoring</p>
         </div>
     </footer>
+
+    <!-- Script for Consultation Form Modal -->
+    <script>
+        // Get the modal
+        const modal = document.getElementById("consultationFormModal");
+
+        // Get the button that opens the modal
+        const btn = document.getElementById("requestConsultationBtn");
+
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close-button")[0];
+
+        // Get the form element
+        const consultationForm = document.getElementById('consultationForm');
+        const formMessage = document.getElementById('formMessage');
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            formMessage.textContent = ""; // Clear message on close
+            consultationForm.reset(); // Reset form fields
+        }
+
+        // When the user clicks anywhere outside of the modal content, close it
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                formMessage.textContent = ""; // Clear message on close
+                consultationForm.reset(); // Reset form fields
+            }
+        }
+
+        // Handle form submission using Formspree
+        consultationForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default submission
+
+            formMessage.textContent = 'Sending...';
+            formMessage.style.color = 'var(--color-medium-text)'; // Use CSS variable
+
+            const formData = new FormData(consultationForm);
+
+            fetch(consultationForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Thank you for your request! We will contact you shortly.';
+                    formMessage.style.color = 'var(--color-success)'; // Use CSS variable
+                    consultationForm.reset();
+                    // Optional: Close the modal after a short delay
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                    }, 3000);
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            formMessage.textContent = data.errors.map(error => error.message).join(', ');
+                            formMessage.style.color = 'var(--color-danger)'; // Use CSS variable
+                        } else {
+                            formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                            formMessage.style.color = 'var(--color-danger)'; // Use CSS variable
+                        }
+                    });
+                }
+            }).catch(error => {
+                console.error('Error sending form:', error); // Log the error for debugging
+                formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                formMessage.style.color = 'var(--color-danger)'; // Use CSS variable
+            });
+        });
+
+    </script>
 
 </body>
 </html>
