@@ -225,8 +225,6 @@ header h1 {
 .about-3rd-eye .description {
     font-size: 1.1rem;
     color: var(--color-medium-text);
-    /* REMOVED: max-width: 750px; */
-    /* REMOVED: margin: 0 auto; */
     margin-bottom: var(--spacing-md);
     text-align: justify;
 }
@@ -589,8 +587,8 @@ header h1 {
 }
 
 .process-step .step-icon {
-    font-size: 3rem;
-    color: var(--color-info);
+    font-size: 3rem; /* Default large size */
+    color: var(--color-info); /* Default color (Cyan) */
     margin-bottom: var(--spacing-xs);
 }
 
@@ -613,6 +611,33 @@ header h1 {
     font-size: 0.95rem;
     color: var(--color-medium-text);
 }
+
+/* --- How it Works Section - Icon Enhancements --- */
+/* Target the specific icons for "Actionable Insight Dashboard" and "Proactive Alerting & Remediation" */
+/* Step 03: Actionable Insight Dashboard */
+.process-step:nth-child(3) .step-icon {
+    color: var(--color-primary); /* Make it blue */
+    font-size: 3rem; /* Ensure it's the larger size */
+}
+
+/* Step 04: Proactive Alerting & Remediation */
+.process-step:nth-child(4) .step-icon {
+    color: var(--color-primary); /* Make it blue */
+    font-size: 3rem; /* Ensure it's the larger size */
+}
+
+/* If you also want step 01 and 02 to be blue like step 03/04 */
+/*
+.process-step:nth-child(1) .step-icon {
+    color: var(--color-primary);
+    font-size: 3rem;
+}
+.process-step:nth-child(2) .step-icon {
+    color: var(--color-primary);
+    font-size: 3rem;
+}
+*/
+
 
 /* --- Contact/Call to Action Section --- */
 .cta-section {
@@ -897,4 +922,3 @@ footer {
         right: 12px;
         font-size: 22px;
     }
-}
