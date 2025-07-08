@@ -618,9 +618,14 @@ header h1 {
 /* Step 03: Actionable Insight Dashboard */
 .process-step:nth-child(3) .step-icon {
     color: var(--color-primary); /* Make it blue */
-    font-size: 4rem; /* Changed from 3rem to 4rem */
+    font-size: 4.5rem; /* Changed from 3rem to 4.5rem */
 }
 
+/* Step 04: Proactive Alerting & Remediation */
+.process-step:nth-child(4) .step-icon {
+    color: var(--color-primary); /* Make it blue */
+    font-size: 4.5rem; /* Changed from 3rem to 4.5rem */
+}
 /* Step 04: Proactive Alerting & Remediation */
 .process-step:nth-child(4) .step-icon {
     color: var(--color-primary); /* Make it blue */
