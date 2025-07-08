@@ -587,16 +587,8 @@ header h1 {
 }
 
 .process-step .step-icon {
-    font-size: 3rem; /* Default large size */
+    /* font-size: 3rem; */ /* Default large size - COMMENTED OUT to avoid conflict */
     color: var(--color-info); /* Default color (Cyan) */
-    margin-bottom: var(--spacing-xs);
-}
-
-.process-step .step-number {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -614,28 +606,16 @@ header h1 {
 
 /* --- How it Works Section - Icon Enhancements --- */
 /* Target the specific icons for "Actionable Insight Dashboard" and "Proactive Alerting & Remediation" */
-
 /* Step 03: Actionable Insight Dashboard */
 .process-step:nth-child(3) .step-icon {
     color: var(--color-primary); /* Make it blue */
-    font-size: 4.5rem; /* Changed from 3rem to 4.5rem */
+    font-size: 4.5rem; /* Increased size from 3rem */
 }
 
 /* Step 04: Proactive Alerting & Remediation */
 .process-step:nth-child(4) .step-icon {
     color: var(--color-primary); /* Make it blue */
-    font-size: 4.5rem; /* Changed from 3rem to 4.5rem */
-}
-/* Step 04: Proactive Alerting & Remediation */
-.process-step:nth-child(4) .step-icon {
-    color: var(--color-primary); /* Make it blue */
-    font-size: 4rem; /* Changed from 3rem to 4rem */
-}
-
-/* Step 04: Proactive Alerting & Remediation */
-.process-step:nth-child(4) .step-icon {
-    color: var(--color-primary); /* Make it blue */
-    font-size: 3rem; /* Ensure it's the larger size */
+    font-size: 4.5rem; /* Increased size from 3rem */
 }
 
 /* --- Contact/Call to Action Section --- */
@@ -857,6 +837,7 @@ footer {
     .hero-section { padding: 60px 20px; }
     .hero-section h2 { font-size: 1.8rem; }
     .hero-section p { font-size: 1rem; }
+    .about-3rd-eye h2, .dashboard-overview-section .section-title, .key-benefits-section h2, .how-it-works-section h2, .cta-section h2 { font-size: 1.6rem; }
     .dashboard-grid { grid-template-columns: 1fr; margin-bottom: var(--spacing-md); }
     .health-checks-section { margin-top: var(--spacing-md); padding-top: var(--spacing-md); }
     .health-checks-header h1 { font-size: 1.8rem; }
@@ -896,7 +877,7 @@ footer {
     .health-checks-table { border-spacing: 0 var(--spacing-xs); }
     .health-checks-table th, .health-checks-table td { padding: 15px 15px; }
     .usp-item, .benefit-item, .process-step { padding: var(--spacing-xs); }
-    .usp-item i, .process-step .step-icon { font-size: 2.4rem; }
+    .usp-item i, .process-step .step-icon { font-size: 2.4rem; } /* Made the general icon size smaller for smaller screens */
     .usp-item h3, .process-step h3 { font-size: 1.1rem; }
     .usp-item p, .process-step p { font-size: 0.9rem; }
     .section-navigation { width: 180px; font-size: 0.9rem; padding: 12px 20px; }
@@ -905,6 +886,7 @@ footer {
 
     /* Modal adjustments for small screens */
     .modal-content {
+        width: 95%;
         padding: 25px;
     }
     .modal-content h2 {
